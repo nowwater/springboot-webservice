@@ -16,7 +16,7 @@ public class ChatController {
 
     // WebSocketConfig 에서 앞에 /app 붙이도록 라우팅
     @MessageMapping("/chat.sendMessage")  // => "/app/chat.sendMessage"
-    @SendTo("/topic/public")
+    @SendTo("/topic/public") // 이 경로를 구독하는 클라이언트에게 전송
     public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
         return chatMessage;
     }
@@ -27,4 +27,4 @@ public class ChatController {
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
         return chatMessage;
     }
-} 
+}
